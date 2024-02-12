@@ -27,7 +27,7 @@ modules:
 
   - name: tireSelector_hdb
     type: hdb
-    path: gen/db
+    path: db
     parameters:
       buildpack: nodejs_buildpack
     requires:
