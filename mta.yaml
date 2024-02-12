@@ -2,13 +2,7 @@ _schema-version: '3.1'
 ID: tireSelector
 version: 3.0.1
 description: "Tire Selector consolidated app"
-parameters:
-  enable-parallel-deployments: true
-build-parameters:
-  before-all:
-    - builder: custom
-      commands:
-        - npm install        
+     
 modules:
   - name: tireSelector_XSJS
     type: nodejs
