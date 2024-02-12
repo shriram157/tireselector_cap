@@ -6,7 +6,7 @@ description: "Tire Selector consolidated app"
 modules:
   - name: tireSelector_XSJS
     type: nodejs
-    path: gen/srv
+    path: srv
     parameters:
       buildpack: nodejs_buildpack
     build-parameters:
