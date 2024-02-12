@@ -1,0 +1,150 @@
+<mvc:View xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" xmlns:t="sap.ui.table" controllerName="tireSelector.controller.searchResultsTire"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page showNavButton="false" class="stylePageSection customStyle">
+				<customHeader>
+					<Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
+						<contentLeft>
+							<Image id="idLexusLogo" src="images/LexusNew.png" width="100px" densityAware="false"/>
+							<Text text="|" class="sapUiTinyMarginBeginEnd"/>
+							<Text class="clCustomFont" text="{i18n>PageTitle}"/>
+						</contentLeft>
+						<contentMiddle><Text text="" id="selectedModelText"/></contentMiddle>
+					</Bar>
+				</customHeader>
+				<tnt:ToolHeader backgroundDesign="Translucent">
+					<Link text="{i18n>PageTitle}" class="clCustomFont sapUiSmallMargin" press="onMenuLinkPress"/>
+					<Link text="{i18n>ProductMarkups}" visible="{FitmentPageModel>/enableProdMarkup}" class="clCustomFont sapUiSmallMargin"
+						press="onMenuLinkPress"/>
+					<!--<Link text="{i18n>ReportError}" class="clCustomFont sapUiSmallMargin" press="onShareEmailPress"/>-->
+				</tnt:ToolHeader>
+				<content>
+					<l:VerticalLayout class="sapUiContentPadding" width="100%">
+						<l:content>
+							<Breadcrumbs currentLocationText="{i18n>SelectTire}">
+								<Link press="onPressBreadCrumb" text="{i18n>PageTitle}"/>
+							</Breadcrumbs>
+						</l:content>
+					</l:VerticalLayout>
+					<OverflowToolbar class="noBottomBorder">
+						<Label text="{DealerModel>/DealerData/DealerCode} - {DealerModel>/DealerData/BusinessPartnerName}" design="Bold"
+							class="styleFontSize customMargin"/>
+						<ToolbarSpacer/>
+						<Button text="{i18n>BackToSearch}" type="Emphasized" press="NavBackToSearch"/>
+					</OverflowToolbar>
+					<VBox id="idVBox" class="facetStyle">
+						<items>
+							<FacetFilter id="idFacetFilter" type="Simple" showPopoverOKButton="true" showPersonalization="true" showReset="true"
+								reset="handleFacetFilterReset" confirm="handleFacetConfirm" lists="{TireFitmentJSONModel>/Filters}">
+								<lists>
+									<FacetFilterList title="{TireFitmentJSONModel>type}" key="{TireFitmentJSONModel>text}" mode="MultiSelect"
+										items="{path:'TireFitmentJSONModel>values', templateShareable: 'true'}">
+										<items>
+											<FacetFilterItem text="{TireFitmentJSONModel>text}" key="{TireFitmentJSONModel>text}"/>
+										</items>
+									</FacetFilterList>
+								</lists>
+							</FacetFilter>
+						</items>
+					</VBox>	
+					<HBox class="customStyleBox" >
+						
+						<t:Table id="idTireSelectionTable"  class="idTireSelectionTable" cellClick="onRowPress"  selectionBehavior="Row" selectionMode="None"
+							rows="{TireFitmentJSONModel>/results}" visibleRowCount="8" showNoData="false">
+							<t:extension>
+								<Toolbar>
+									<CheckBox text="{i18n>ShowDealerNet}" select="onCheckPress" id="checkDealerNet"/>
+									<CheckBox text="{i18n>UsePreviewMarkup}" select="onCheckPreview" id="checkPreview"/>
+								</Toolbar>
+							</t:extension>
+							<t:columns>
+								<t:Column id="ID_TireFitment" sortProperty="{i18n>TireFitment}" filterProperty="{i18n>TireFitment}" width="7rem">
+									<Label text="{i18n>TireFitment}"/>
+									<t:template>
+										<Text text="{path:'TireFitmentJSONModel>Tire Fitment'}" wrapping="false" id="cell_Fitment">
+											<customData>
+												<core:CustomData key="colorClass"
+													value="{=${TireFitmentJSONModel>localLang} === 'E' ? ${TireFitmentJSONModel>Tire Fitment} : ${TireFitmentJSONModel>localLang} === 'F' ? ${TireFitmentJSONModel>Utilisation de pneu} : ''}"
+													writeToDom="{=!!${TireFitmentJSONModel>localLang}}"/>
+											</customData>
+										</Text>
+									</t:template>
+								</t:Column>
+								<t:Column sortProperty="{i18n>TireCategory}" filterProperty="{i18n>TireCategory}" width="7rem">
+									<Label text="{i18n>TireCategory}"/>
+									<t:template>
+										<Text class="TextPaddig"
+											text="{=${TireFitmentJSONModel>localLang}==='E' ? ${TireFitmentJSONModel>Tire Category}:${TireFitmentJSONModel>Catégorie de pneu}}"
+											wrapping="false"/>
+									</t:template>
+								</t:Column>
+								<t:Column sortProperty="{i18n>TireBrandDesc}" filterProperty="{i18n>TireBrandDesc}" width="20rem">
+									<Label text="{i18n>TireBrandDesc}"/>
+									<t:template>
+										<Text class="TextPaddig"
+											text="{=${TireFitmentJSONModel>localLang}==='E' ? ${TireFitmentJSONModel>Tire Brand}:${TireFitmentJSONModel>Marque de pneu}}-{TireFitmentJSONModel>MatDesc}-{TireFitmentJSONModel>TireSize}"
+											wrapping="false"/>
+									</t:template>
+								</t:Column>
+								<t:Column sortProperty="{i18n>LoadRating}" filterProperty="{i18n>LoadRating}" width="7rem">
+									<Label text="{i18n>LoadRating}"/>
+									<t:template>
+										<Text text="{=${TireFitmentJSONModel>localLang}==='E' ? ${TireFitmentJSONModel>Tire Load Rating}:${TireFitmentJSONModel>Indice de charge}}"
+											class="TextPaddig" wrapping="false"/>
+									</t:template>
+								</t:Column>
+								<t:Column sortProperty="{i18n>SpeedRating}" filterProperty="{i18n>SpeedRating}" width="7rem">
+									<Label text="{i18n>SpeedRating}"/>
+									<t:template>
+										<Text
+											text="{=${TireFitmentJSONModel>localLang}==='E' ? ${TireFitmentJSONModel>Tire Speed Rating}:${TireFitmentJSONModel>Indice de vitesse}}"
+											class="TextPaddig" wrapping="false"/>
+									</t:template>
+								</t:Column>
+								<t:Column sortProperty="{i18n>TCIPartNumber}" filterProperty="{i18n>TCIPartNumber}">
+									<Label text="{i18n>TCIPartNumber}" wrapping="false"/>
+									<t:template>
+										<Text text="{TireFitmentJSONModel>Material}" class="TextPaddig" wrapping="false"/>
+									</t:template>
+								</t:Column>
+								<t:Column sortProperty="{i18n>TireMFGPartNo}" filterProperty="{i18n>TireMFGPartNo}">
+									<Label text="{i18n>TireMFGPartNo}" wrapping="false"/>
+									<t:template>
+										<Text
+											text="{=${TireFitmentJSONModel>localLang}==='E' ? ${TireFitmentJSONModel>Tire MFG Part No}:${TireFitmentJSONModel>N° de pièce du fabricant de pneus}}"
+											class="TextPaddig" wrapping="false"/>
+									</t:template>
+								</t:Column>
+								<t:Column id="ID_DealerNet" sortProperty="DealerNet" filterProperty="DealerNet" visible="{FitmentPageModel>/enableDealerNet}"
+									width="6rem">
+									<Label text="{i18n>DealerNet}" wrapping="false"/>
+									<t:template>
+										<Text text="{path:'TireFitmentJSONModel>DealerNet', formatter: '.decimalFormatter'}" class="TextPaddig" wrapping="false"/>
+									</t:template>
+								</t:Column>
+								<t:Column id="ID_Profit" sortProperty="{i18n>Profit}" filterProperty="{i18n>Profit}" visible="{FitmentPageModel>/enableProfit}" width="6rem">
+									<Label text="{i18n>Profit}" wrapping="false"/>
+									<t:template>
+										<Text text="{path:'TireFitmentJSONModel>Profit', formatter: '.decimalFormatter'}" class="TextPaddig" wrapping="false"/>
+									</t:template>
+								</t:Column>
+								<t:Column sortProperty="Retails" filterProperty="Retails" width="6rem">
+									<Label text="{i18n>Retail}" wrapping="false"/>
+									<t:template>
+										<Text text="{path:'TireFitmentJSONModel>Retails', formatter: '.decimalFormatter'}" class="TextPaddig" wrapping="false"/>
+									</t:template>
+								</t:Column>
+							</t:columns>
+						</t:Table>
+					
+					</HBox>
+				</content>
+				<footer>
+					<Toolbar> </Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

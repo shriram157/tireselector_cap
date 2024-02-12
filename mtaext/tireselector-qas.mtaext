@@ -1,0 +1,31 @@
+_schema-version: "3.1"
+ID: tireSelector.qas
+extends: tireSelector
+
+modules:
+ - name: tireSelector_Node
+   parameters:
+      host: qas-tireselector-node
+      domain: scp.toyota.ca
+ - name: tireSelector_XSJS
+   parameters:
+      host: qas-tireselector-xsjs
+      domain: scp.toyota.ca
+ - name: tireSelector
+   parameters:
+      host: qas-tireselector
+      domain: scp.toyota.ca
+#  - name: app
+#    parameters:
+#       host: qas-tireselector-app-router
+#       domain: scp.toyota.ca
+
+resources:
+ - name: uaa_tireSelector
+   parameters:
+      config:
+         oauth2-configuration:
+            redirect-uris:
+               - https://qas-tireselector.scp.toyota.ca/login/callback
+               - http://localhost:8080/login/callback
+

@@ -1,0 +1,20 @@
+{
+	"name": "tireSelector",
+	"version": "2.0.0",
+	"description": "",
+	"devDependencies": {
+		"@sap/grunt-sapui5-bestpractice-build": "1.4.15",
+		"grunt-shell": "^4.0.0"
+	},
+	"dependencies": {
+		"@sap/approuter": "11.3.2",
+		"cross-env": "^7.0.3"
+	},
+	"scripts": {
+		"serve": "cross-env PORT=8080 node server.js",
+		"start": "node server.js"
+	},
+	"engines": {
+		"node": "18.x"
+	}
+}

@@ -1,0 +1,17 @@
+PROCEDURE RENAME_HDBCDS_TO_PLAIN LANGUAGE SQLSCRIPT AS BEGIN
+  --
+  -- tireSelector.dealerMarkUp
+  --
+  EXEC 'RENAME TABLE "tireSelector.dealerMarkUp" TO tireSelector_dealerMarkUp';
+    EXEC 'RENAME COLUMN tireSelector_dealerMarkUp."Dealer_code" TO Dealer_code';
+    EXEC 'RENAME COLUMN tireSelector_dealerMarkUp."Dealer_Brand" TO Dealer_Brand';
+    EXEC 'RENAME COLUMN tireSelector_dealerMarkUp."Manufacturer_code" TO Manufacturer_code';
+    EXEC 'RENAME COLUMN tireSelector_dealerMarkUp."Preview_Markup_Percentage" TO Preview_Markup_Percentage';
+    EXEC 'RENAME COLUMN tireSelector_dealerMarkUp."Live_Markup_Percentage" TO Live_Markup_Percentage';
+    EXEC 'RENAME COLUMN tireSelector_dealerMarkUp."Live_Last_Updated" TO Live_Last_Updated';
+    EXEC 'RENAME COLUMN tireSelector_dealerMarkUp."Live_Last_Updated_By" TO Live_Last_Updated_By';
+    EXEC 'RENAME COLUMN tireSelector_dealerMarkUp."User_First_Name" TO User_First_Name';
+    EXEC 'RENAME COLUMN tireSelector_dealerMarkUp."User_Last_Name" TO User_Last_Name';
+    EXEC 'RENAME COLUMN tireSelector_dealerMarkUp."IsLive" TO IsLive';
+END;
+

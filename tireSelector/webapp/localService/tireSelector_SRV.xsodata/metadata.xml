@@ -1,0 +1,27 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+		<Schema xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+			xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm"
+			Namespace="default">
+			<EntityType Name="DealerMarkUpType">
+				<Key>
+					<PropertyRef Name="Dealer_code"/>
+					<PropertyRef Name="Dealer_Brand"/>
+					<PropertyRef Name="Manufacturer_code"/>
+				</Key>
+				<Property Name="Dealer_code" Type="Edm.String" Nullable="false" MaxLength="20"/>
+				<Property Name="Dealer_Brand" Type="Edm.String" Nullable="false" MaxLength="2"/>
+				<Property Name="Manufacturer_code" Type="Edm.String" Nullable="false" MaxLength="10"/>
+				<Property Name="Preview_Markup_Percentage" Type="Edm.Decimal" Precision="4" Scale="2"/>
+				<Property Name="Live_Markup_Percentage" Type="Edm.Decimal" Precision="4" Scale="2"/>
+				<Property Name="Live_Last_Updated" Type="Edm.DateTime"/>
+				<Property Name="Live_Last_Updated_By" Type="Edm.String" MaxLength="10"/>
+				<Property Name="User_First_Name" Type="Edm.String" MaxLength="40"/>
+				<Property Name="User_Last_Name" Type="Edm.String" MaxLength="40"/>
+			</EntityType>
+			<EntityContainer Name="v2" m:IsDefaultEntityContainer="true">
+				<EntitySet Name="DealerMarkUp" EntityType="default.DealerMarkUpType"/>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

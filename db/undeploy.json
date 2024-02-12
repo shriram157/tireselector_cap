@@ -1,0 +1,9 @@
+[
+  "src/tireSelector.hdbcds",
+  "src/gen/*.hdbcds",
+  "src/defaults/*",
+  "src/procedures/RENAME_HDBCDS_TO_PLAIN.hdbprocedure",
+  "src/gen/**/*.hdbview",
+  "src/gen/**/*.hdbindex",
+  "src/gen/**/*.hdbconstraint"
+]

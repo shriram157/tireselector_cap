@@ -1,0 +1,80 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
+	controllerName="tireSelector.controller.productMarkups" xmlns:t="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page showNavButton="false" class="stylePageSection customStyle" enableScrolling="false">
+				<customHeader>
+					<Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
+						<contentLeft>
+							<Image id="idLexusLogo" src="images/LexusNew.png" width="100px" densityAware="false"/>
+							<Text text="|" class="sapUiTinyMarginBeginEnd"/>
+							<Text class="clCustomFont" text="{i18n>PageTitle}"/>
+						</contentLeft>
+					</Bar>
+				</customHeader>
+				<tnt:ToolHeader backgroundDesign="Translucent">
+					<Link text="{i18n>PageTitle}" class="clCustomFont sapUiSmallMargin" press="onMenuLinkPress"/>
+					<Link text="{i18n>ProductMarkups}" visible="{propertiesModel>/enableProdMarkup}" class="clCustomFont sapUiSmallMargin"
+						press="onMenuLinkPress"/>
+				<!--	<Link text="{i18n>ReportError}" class="clCustomFont sapUiSmallMargin" press="onShareEmailPress"/>-->
+					<Link text="{i18n>Back}" press="BackToHistory" class="clCustomFont sapUiSmallMargin"/>
+				</tnt:ToolHeader>
+				<content>
+					<l:VerticalLayout class="sapUiContentPadding" width="100%">
+						<l:content>
+							<Breadcrumbs id="ID_curCrumbText" currentLocationText="{i18n>ProductMarkups}">
+								<Link press="onPressBreadCrumb" text="{i18n>PageTitle}"/>
+							</Breadcrumbs>
+						</l:content>
+					</l:VerticalLayout>
+					<OverflowToolbar class="noBottomBorder">
+						<Label text="{DealerModel>/DealerData/DealerCode} - {DealerModel>/DealerData/BusinessPartnerName}" design="Bold"
+							class="styleFontSize customMargin"/>
+						<ToolbarSpacer/>
+						<Text text="({i18n>tooltip})" />
+						<Button text="{i18n>SavePreview}" type="Emphasized" press="updateXSATable"/>
+						<Button text="{i18n>MakePreviewLive}" type="Emphasized" press="updateXSALiveTable"/>
+					</OverflowToolbar>
+					<t:Table id="ID_ProdMarkupsTable" selectionBehavior="Row" selectionMode="None" visibleRowCount="7"
+							rows="{ path: 'ProdMarkupModel>/results', sorter: { path: 'Manufacturer' } }"  showNoData="false">
+							<t:columns>
+								<t:Column sortProperty="Manufacturer_code" filterProperty="Manufacturer_code">
+									<Label text="{i18n>Manufacturer}"/>
+									<t:template>
+										<Text text="{ProdMarkupModel>Manufacturer_code}"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="15rem">
+									<Label text="{i18n>Preview}"/>
+									<t:template>
+										<Input value="{ProdMarkupModel>Preview_Markup_Percentage}" change="updatePostdateLive"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="15rem">
+									<Label text="{i18n>Live}"/>
+									<t:template>
+										<Text text="{ProdMarkupModel>Live_Markup_Percentage}" tooltip="{ProdMarkupModel>tooltipText}" />
+									</t:template>
+								</t:Column>
+								<t:Column width="20rem">
+									<Label text="{i18n>LastUpdated}"/>
+									<t:template>
+										<Text text="{ProdMarkupModel>Live_Last_Updated}"/>
+									</t:template>
+								</t:Column>
+								<t:Column>
+									<Label text="{i18n>LastUpdatedBy}"/>
+									<t:template>
+										<Text text="{ProdMarkupModel>Live_Last_Updated_By}"/>
+									</t:template>
+								</t:Column>
+							</t:columns>
+						</t:Table>
+				</content>
+				<footer>
+					<Toolbar> </Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

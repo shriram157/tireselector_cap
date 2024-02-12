@@ -1,0 +1,296 @@
+{
+	"_version": "1.8.0",
+	"sap.app": {
+		"id": "tireSelector",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "2.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"dealerMarkUp": {
+				"uri": "/tireSelector/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0",
+					"localUri": "localService/dealerMarkUp/metadata.xml"
+				}
+			},
+			"Z_TIRESELECTOR_SRV": {
+				"uri": "/node/Z_TIRESELECTOR_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/Z_TIRESELECTOR_SRV/metadata.xml"
+				}
+			},
+			"MD_PRODUCT_OP_SRV": {
+				"uri": "/node/MD_PRODUCT_OP_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/MD_PRODUCT_OP_SRV/metadata.xml"
+				}
+			},
+			"ZMD_PRODUCT_FS_V2_SRV": {
+				"uri": "/node/ZMD_PRODUCT_FS_V2_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/ZMD_PRODUCT_FS_V2_SRV/metadata.xml"
+				}
+			},
+			"API_BUSINESS_PARTNER": {
+				"uri": "/node/API_BUSINESS_PARTNER/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/API_BUSINESS_PARTNER/metadata.xml"
+				}
+			},
+			"ZSD_TIRE_QUOTATION_PDF_SRV_01": {
+				"uri": "/node/ZSD_TIRE_QUOTATION_PDF_SRV_01/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/ZSD_TIRE_QUOTATION_PDF_SRV_01/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": ["sap_hcb", "sap_belize"]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "tireSelector.view.master",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.38.34",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.f": {},
+				"sap.ui.layout": {},
+				"sap.ushell": {},
+				"sap.collaboration": {},
+				"sap.ui.comp": {},
+				"sap.uxap": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "tireSelector.i18n.i18n"
+				}
+			},
+			"XsodataModel": {
+				"dataSource": "dealerMarkUp",
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"preload": false,
+				"settings": {
+					"useBatch": false,
+					"json": true,
+					"defaultBindingMode": "TwoWay",
+					"defaultUpdateMethod": "PUT",
+					"headers": {
+						"X-Requested-With": "XMLHttpRequest"
+					}
+				}
+			},
+			"XsodataModelPost": {
+				"dataSource": "dealerMarkUp",
+				"type": "sap.ui.model.odata.ODataModel",
+				"preload": false,
+				"settings": {
+					"useBatch": false,
+					"json": true,
+					"defaultBindingMode": "TwoWay",
+					"headers": {
+						"X-Requested-With": "XMLHttpRequest"
+					}
+				}
+			},
+			"FitmentModel": {
+				"uri": "/node/Z_TIRESELECTOR_SRV/",
+				"type": "sap.ui.model.odata.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"json": true,
+					"useBatch": false,
+					"headers": {
+						"X-Requested-With": "XMLHttpRequest"
+					}
+				},
+				"dataSource": "Z_TIRESELECTOR_SRV",
+				"preload": false
+			},
+			"PriceServiceModel": {
+				"uri": "/node/MD_PRODUCT_OP_SRV/",
+				"type": "sap.ui.model.odata.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"json": true,
+					"useBatch": false,
+					"headers": {
+						"X-Requested-With": "XMLHttpRequest"
+					}
+				},
+				"dataSource": "MD_PRODUCT_OP_SRV",
+				"preload": false
+			},
+			"PriceServiceModel2": {
+				"uri": "/node/ZMD_PRODUCT_FS_V2_SRV/",
+				"type": "sap.ui.model.odata.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"json": true,
+					"useBatch": false,
+					"headers": {
+						"X-Requested-With": "XMLHttpRequest"
+					}
+				},
+				"dataSource": "ZMD_PRODUCT_FS_V2_SRV",
+				"preload": false
+			},
+			"BusinessPartnerModel": {
+				"uri": "/node/API_BUSINESS_PARTNER/",
+				"type": "sap.ui.model.odata.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"json": true,
+					"useBatch": false,
+					"headers": {
+						"X-Requested-With": "XMLHttpRequest"
+					}
+				},
+				"dataSource": "API_BUSINESS_PARTNER",
+				"preload": false
+			},
+			"PDFDataModel": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": false,
+					"headers": {
+						"X-Requested-With": "XMLHttpRequest"
+					}
+				},
+				"dataSource": "ZSD_TIRE_QUOTATION_PDF_SRV_01",
+				"preload": false
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "tireSelector.view",
+				"controlAggregation": "pages",
+				"controlId": "idAppControl",
+				"clearControlAggregation": false,
+				"clearTarget": "false"
+			},
+			"routes": [{
+				"name": "master",
+				"pattern": "master",
+				"target": "master"
+			}, {
+				"name": "searchResultsTire",
+				"pattern": "searchResultsTire/{modelData}",
+				"target": "searchResultsTire"
+			}, {
+				"name": "searchResultsFromQuote",
+				"pattern": "searchResultsFromQuote",
+				"target": "searchResultsFromQuote"
+			}, {
+				"name": "searchResultsTireNoData",
+				"pattern": "searchResultsTireNoData/{tireData}",
+				"target": "searchResultsTireNoData"
+			}, {
+				"name": "productMarkups",
+				"pattern": "productMarkups",
+				"target": "productMarkups"
+			}, {
+				"name": "reportError",
+				"pattern": "reportError",
+				"target": "reportError"
+			}, {
+				"name": "tireQuotation",
+				"pattern": "tireQuotation/{rowData}",
+				"target": "tireQuotation"
+			}],
+			"targets": {
+				"master": {
+					"viewType": "XML",
+					"transition": "slide",
+					"viewName": "master"
+				},
+				"searchResultsTire": {
+					"viewType": "XML",
+					"viewName": "searchResultsTire"
+				},
+				"searchResultsTireNoData": {
+					"viewType": "XML",
+					"viewName": "searchResultsTire"
+				},
+				"searchResultsFromQuote": {
+					"viewType": "XML",
+					"viewName": "searchResultsTire"
+				},
+				"productMarkups": {
+					"viewType": "XML",
+					"viewName": "productMarkups"
+				},
+				"reportError": {
+					"viewType": "XML",
+					"viewName": "reportError"
+				},
+				"tireQuotation": {
+					"viewType": "XML",
+					"viewName": "tireQuotation"
+				}
+			}
+		}
+	}
+}

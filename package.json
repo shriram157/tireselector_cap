@@ -1,0 +1,33 @@
+{
+  "name": "tireSelector",
+  "version": "1.0.0",
+  "description": "Tire Selector consolidated app",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "express": "^4",
+    "@sap/cds-hana": "^2",
+    "@sap/xssec": "^3",
+    "passport": "^0"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "build": "mbt build -e=mtaext/tireselector-dev.mtaext -t ./",
+    "deploy": "cf deploy tireSelector_3.0.1.mtar"
+  },
+  "cds": {
+    "hana": {
+      "deploy-format": "hdbtable"
+    },
+    "requires": {
+      "db": "hana",
+      "auth": "xsuaa"
+    }
+  }
+}

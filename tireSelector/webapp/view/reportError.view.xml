@@ -1,0 +1,33 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
+	controllerName="tireSelector.controller.reportError" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page showNavButton="false" class="stylePageSection customStyle">
+				<customHeader>
+					<Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
+						<contentLeft>
+							<Image id="idLexusLogo" src="images/LexusNew.png" width="100px" densityAware="false"/>
+							<Text text="|" class="sapUiTinyMarginBeginEnd"/>
+							<Text class="clCustomFont" text="{i18n>PageTitle}"/>
+						</contentLeft>
+					</Bar>
+				</customHeader>
+				<tnt:ToolHeader backgroundDesign="Translucent">
+					<Link text="{i18n>PageTitle}" class="clCustomFont sapUiSmallMargin" press="onMenuLinkPress"/>
+					<Link text="{i18n>ProductMarkups}" visible="{propertiesModel>/enableProdMarkup}" class="clCustomFont sapUiSmallMargin" press="onMenuLinkPress"/>
+					<!--<Link text="{i18n>ReportError}" class="clCustomFont sapUiSmallMargin" press="onShareEmailPress"/>-->
+				</tnt:ToolHeader>
+				<content>
+					<l:VerticalLayout class="sapUiContentPadding" width="100%">
+						<l:content>
+							<Breadcrumbs currentLocationText="{i18n>Search}">
+								<Link press="onPress" text="{i18n>PageTitle}"/>
+							</Breadcrumbs>
+						</l:content>
+					</l:VerticalLayout>
+					<Label text="{i18n>DealerCodeName}" design="Bold" class="styleFontSize customMargin"/>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

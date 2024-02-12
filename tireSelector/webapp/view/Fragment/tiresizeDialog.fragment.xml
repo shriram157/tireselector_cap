@@ -1,0 +1,13 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		class="sapUiPopupWithPadding"
+		items="{FitmentDataModel>/results}"
+		search="_handleValueHelpSearch"
+		confirm="_handleValueHelpClose"
+		cancel="_handleValueHelpClose">
+		<StandardListItem
+			title="{path:'FitmentDataModel>TIRE_SIZE', formatter: '.formatTireSize'}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

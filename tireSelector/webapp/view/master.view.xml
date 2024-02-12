@@ -1,0 +1,139 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" xmlns:t="sap.ui.table" xmlns:tnt="sap.tnt" xmlns:f="sap.ui.layout.form"
+	controllerName="tireSelector.controller.master" displayBlock="true">
+	<App id="idAppControl">
+		<Page showNavButton="false" class="stylePageSection customStyle" enableScrolling="false">
+			<customHeader>
+				<Bar class="sapUiSmallPaddingBeginEnd clCustomHeaderBg">
+					<contentLeft>
+						<Image id="idLexusLogo" src="images/LexusNew.png" width="100px" densityAware="false"/>
+						<Text text="|" class="sapUiTinyMarginBeginEnd"/>
+						<Text class="clCustomFont" text="{i18n>PageTitle}"/>
+					</contentLeft>
+				</Bar>
+			</customHeader>
+			<tnt:ToolHeader backgroundDesign="Translucent">
+				<Link text="{i18n>PageTitle}" class="clCustomFont sapUiSmallMargin" press="onMenuLinkPress"/>
+				<Link text="{i18n>ProductMarkups}" visible="{MasterModel>/enableProdMarkup}" class="clCustomFont sapUiSmallMargin" press="onMenuLinkPress"/>
+				<!--<Link text="{i18n>ReportError}" class="clCustomFont sapUiSmallMargin" press="onShareEmailPress"/>-->
+			</tnt:ToolHeader>
+			<content>
+				<l:VerticalLayout class="sapUiContentPadding" width="100%">
+					<l:content>
+						<Breadcrumbs currentLocationText="{i18n>Search}">
+							<Link press="onPress" text="{i18n>PageTitle}"/>
+						</Breadcrumbs>
+					</l:content>
+				</l:VerticalLayout>
+				<Label text="{DealerModel>/DealerData/DealerCode} - {DealerModel>/DealerData/BusinessPartnerName}" design="Bold"
+					class="styleFontSize customMargin"/>
+				<MessageStrip id="ID_ErrMsgStrip" text="" showIcon="true" showCloseButton="false" visible="false" type="Error" class="customMargin"/>
+				<f:SimpleForm id="ID_searchForm" class="styleSearchForm" columnsL="2" columnsM="2" editable="true" emptySpanL="0" emptySpanM="0"
+					labelSpanL="2" labelSpanM="2" layout="ResponsiveGridLayout">
+					<f:content>
+						<VBox>
+							<Label text="{i18n>SearchBy}" required="true"/>
+							<ComboBox placeholder="{i18n>Search}" id="searchOptionList" selectionChange="changeOptionPress" value="" selectedKey=""
+								items="{ path: 'SelectJSONModel>/SearchOptionsList', sorter: { path: 'SearchText' } }">
+								<core:ListItem key="{SelectJSONModel>SearchText}" text="{SelectJSONModel>SearchText}"/>
+								<layoutData>
+									<l:GridData span="L2 M12 S12"/>
+								</layoutData>
+							</ComboBox>
+						</VBox>
+						<VBox>
+							<Label id="searchOptionLabel" required="true"/>
+							<Input placeholder="{i18n>Search}" id="searchOptionVIN" type="Text" visible="{MasterModel>/enableVin}" liveChange="onLiveChangeVIN" showSuggestion="true"
+								suggest="handleVINSuggest" change="onInputEntryVIN" suggestionItems="{GlobalJSONModel>/vinData}" maxLength="17">
+								<suggestionItems>
+									<core:ListItem text="{GlobalJSONModel>VIN}"/>
+								</suggestionItems>
+							</Input>
+							<Link text="load more VIN" press="loadMoreVin" visible="{MasterModel>/enableMore}"/>
+						
+							<Input placeholder="{i18n>Search}" id="searchOptionTireSize" visible="{MasterModel>/enableTireSize}" liveChange="onLiveChangeTireSize" change="onInputEntryTireSize"  showSuggestion="true" suggest="handleTireSizeSuggest"
+							 filterSuggests="false"	suggestionItems="{ path: 'FitmentDataModel>/results', sorter: { path: 'TIRE_SIZE' } }">
+								<suggestionItems>
+									<core:ListItem text="{path:'FitmentDataModel>TIRE_SIZE', formatter: '.formatTireSize'}"/>
+								</suggestionItems>
+							</Input>
+							<ComboBox id="VehicleSearchCombo" visible="{MasterModel>/enableVehicleInputs}" selectionChange="onVehicleChange" change="onComboInputChange"
+								value="" selectedKey="" items="{ path: 'GlobalJSONModel>/vehicleSeriesData', sorter: { path: 'ModelSeriesNo' } }">
+								<core:ListItem key="{GlobalJSONModel>ModelSeriesNo}" text="{GlobalJSONModel>ModelSeriesNo} - {GlobalJSONModel>TCISeriesDescriptionEN}"/>
+								<layoutData>
+									<l:GridData span="L2 M12 S12"/>
+								</layoutData>
+							</ComboBox>
+						</VBox>
+						<VBox id="forVehicleSearchOnly" visible="{MasterModel>/enableVehicleInputs}">
+							<Label text="{i18n>ModelYear}" id="ModelSeriesLabel" required="true"/>
+							<ComboBox id="ModelSeriesCombo" selectionChange="onInputEntryChange" change="onComboInputChange" value="" selectedKey=""
+								items="{ path: 'GlobalJSONModel>/modelDetailsData', sorter: { path: 'ModelYear', descending: true } }">
+								<core:ListItem key="{GlobalJSONModel>ModelYear}" text="{GlobalJSONModel>ModelYear}"/>
+								<layoutData>
+									<l:GridData span="L2 M12 S12"/>
+								</layoutData>
+							</ComboBox>
+						</VBox>
+						<HBox class="formBtnStyle">
+							<Link text="{i18n>ClearSearchFields}" press="handleClearSearch">
+								<layoutData>
+									<l:GridData span="L2 M12 S12"/>
+								</layoutData>
+							</Link>
+						</HBox>
+						<HBox class="formBtnStyle">
+							<Button id="searchBTN" icon="sap-icon://search" type="Emphasized" text="{i18n>Search}" press="NavToSearchResults" width="auto"
+								enabled="{MasterModel>/enableSearchBtn}">
+								<layoutData>
+									<l:GridData span="L2 M12 S12"/>
+								</layoutData>
+							</Button>
+						</HBox>
+					</f:content>
+				</f:SimpleForm>
+				<HBox class="tableSearhResults" visible="{MasterModel>/enableTable}">
+					<t:Table id="idSearchresultsTable" selectionBehavior="Row" selectionMode="None" visibleRowCount="7" cellClick="navToSelectTire"
+						rows="{ path: 'SearchResultModel>/results', sorter: { path: 'Model' } }" showNoData="false">
+						<t:columns>
+							<t:Column>
+								<Label text="{i18n>Model}"/>
+								<t:template>
+									<Text text="{SearchResultModel>SuffixDesc}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>Package}"/>
+								<t:template>
+									<Text text="{SearchResultModel>Zzsuffix}"/>
+								</t:template>
+							</t:Column>
+							<!--Adding of New field Of CR1032-->
+							<t:Column>
+								<Label text="{i18n>FrontRear}"/>
+								<t:template>
+									<Text text="{SearchResultModel>Front_Rear}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>TireSize}"/>
+								<t:template>
+									<Text text="{SearchResultModel>ZtireSize}"/>
+								</t:template>
+							</t:Column>
+							<t:Column>
+								<Label text="{i18n>RimType}"/>
+								<t:template>
+									<Text text="{SearchResultModel>ZrimType}"/>
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
+				</HBox>
+			</content>
+			<footer>
+				<Toolbar></Toolbar>
+			</footer>
+		</Page>
+	</App>
+</mvc:View>

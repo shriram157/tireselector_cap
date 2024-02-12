@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="Z_TIRESELECTOR_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="ZC_Fitment" sap:content-version="1">
+				<Key><PropertyRef Name="ZtireSize"/></Key><Property Name="Zzmoyr" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Model year" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Model" Type="Edm.String" Nullable="false" MaxLength="7" sap:unicode="false" sap:label="Model" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Zzsuffix" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Suffix" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZtireSize" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Tire Size" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZtireLoadRating" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Load Rating"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZtireSpeedRating" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Speed Rating"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZfrontRearFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Front Rear Flag"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZrimSize" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Rim Size" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZrimType" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Rim Type" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZtireBrand" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="OE Vendor"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZtireMfrnPart" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="OE Manufacturer's Pa"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZcreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Created By"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZcreatedOn" Type="Edm.String" Nullable="false" MaxLength="19" sap:unicode="false" sap:label="Created On"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZchgBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Changed by" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZchgOn" Type="Edm.String" Nullable="false" MaxLength="19" sap:unicode="false" sap:label="Changed On" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="FitmentToCharac" Relationship="Z_TIRESELECTOR_SRV.FitmentToCharac" FromRole="FromRole_FitmentToCharac"
+					ToRole="ToRole_FitmentToCharac"/></EntityType>
+			<EntityType Name="ZC_Characteristic_Info" sap:content-version="1">
+				<Key><PropertyRef Name="TIRE_SIZE"/></Key><Property Name="TIRE_SIZE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TIRE_SPEED_RATING" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TIRE_LOAD_RATING" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TIRE_MFG_PART_NUM" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TIRE_BRAND_ID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TIRE_BRAND_NAME" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TIRE_CATEGORY" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="MATERIAL" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="CLASS" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TIRE_FITMENT" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<Association Name="FitmentToCharac" sap:content-version="1"><End Type="Z_TIRESELECTOR_SRV.ZC_Fitment" Multiplicity="1" Role="FromRole_FitmentToCharac"/><End Type="Z_TIRESELECTOR_SRV.ZC_Characteristic_Info" Multiplicity="*" Role="ToRole_FitmentToCharac"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_FitmentToCharac"><PropertyRef Name="ZtireSize"/></Principal>
+					<Dependent Role="ToRole_FitmentToCharac"><PropertyRef Name="TIRE_SIZE"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="Z_TIRESELECTOR_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="ZC_FitmentSet" EntityType="Z_TIRESELECTOR_SRV.ZC_Fitment" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="ZC_Characteristic_InfoSet" EntityType="Z_TIRESELECTOR_SRV.ZC_Characteristic_Info" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+				<AssociationSet Name="FitmentToCharacSet" Association="Z_TIRESELECTOR_SRV.FitmentToCharac" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="ZC_FitmentSet" Role="FromRole_FitmentToCharac"/><End EntitySet="ZC_Characteristic_InfoSet" Role="ToRole_FitmentToCharac"/></AssociationSet>
+			</EntityContainer><atom:link rel="self"
+				href="https://webidecp-d36z7bqhz1.dispatcher.ca1.hana.ondemand.com/destinations/S4HANA_GW/sap/opu/odata/sap/Z_TIRESELECTOR_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/><atom:link rel="latest-version"
+				href="https://webidecp-d36z7bqhz1.dispatcher.ca1.hana.ondemand.com/destinations/S4HANA_GW/sap/opu/odata/sap/Z_TIRESELECTOR_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

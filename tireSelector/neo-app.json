@@ -1,0 +1,44 @@
+{
+	"welcomeFile": "/webapp/index.html",
+	"routes": [{
+		"path": "/resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/resources",
+			"version": "1.52.22"
+		},
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/test-resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/test-resources",
+			"version": "1.52.22"
+		},
+		"description": "SAPUI5 Test Resources"
+	}, {
+		"path": "/appdata",
+		"target": {
+			"type": "destination",
+			"name": "tireselector-node",
+			"entryPath": "/appdata"
+		}
+	}, {
+		"path": "/node",
+		"target": {
+			"type": "destination",
+			"name": "tireselector-node",
+			"entryPath": "/node"
+		}
+	}, {
+		"path": "/tireSelector/xsodata",
+		"target": {
+			"type": "destination",
+			"name": "tireselector-xsjs",
+			"entryPath": "/tireSelector/xsodata"
+		}
+	}],
+	"sendWelcomeFileRedirect": true
+}

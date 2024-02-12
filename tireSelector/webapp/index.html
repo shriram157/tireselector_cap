@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta charset="UTF-8" />
+
+		<title>Tire Selector</title>
+
+		<!--
+		 When upgrading SAPUI5 to >= 1.54, make sure to update compatVersion in Gruntfile.js according to
+		 https://github.com/SAP/grunt-openui5#compatversion to ensure Component-preload.js format is updated
+		 -->
+		 <!--DMND0003799 VERSION UPDATE-->
+		<script id="sap-ui-bootstrap"
+			src="https://sapui5.hana.ondemand.com/1.71/resources/sap-ui-core.js"
+			data-sap-ui-async="true"
+			data-sap-ui-libs="sap.f,sap.m,sap.tnt,sap.ui.table,sap.ui.layout"
+			data-sap-ui-theme="sap_belize"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-xx-bindingSyntax="complex"
+			data-sap-ui-resourceroots='{"tireSelector": "./"}'
+			data-sap-ui-frameOptions="trusted"
+			data-sap-ui-oninit="module:sap/ui/core/ComponentSupport">
+		</script>
+
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+
+		<!--<script>
+			sap.ui.getCore().attachInit(function() {
+				new sap.m.Shell({
+					app: new sap.ui.core.ComponentContainer({
+						height : "100%",
+						name : "tireSelector"
+					}),
+					appWidthLimited : false
+				}).placeAt("content");
+			});
+		</script>-->
+	</head>
+
+	<body class="sapUiBody" id="content">
+	<div data-sap-ui-component
+		data-name="tireSelector"
+		data-height="100%"
+		data-id="container"
+		data-settings='{"id" : "tireSelector"}'
+		style="height: 100%">
+	</div>	
+	</body>
+
+</html>
